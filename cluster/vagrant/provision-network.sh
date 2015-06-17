@@ -84,6 +84,9 @@ function provision-network {
     # add ip route rules such that all pod traffic flows through docker bridge and consequently to the gre tunnels
     echo "Add ip route rules such that all pod traffic flows through docker bridge"
     ip route add ${CONTAINER_SUBNET} dev ${DOCKER_BRIDGE} scope link src ${CONTAINER_ADDR}
+	ip route add 10.247.0.0/16 dev ${TUNNEL_BASE}0
   }
   echo "Network configuration verified"
+  ovs-vsctl set bridge ${OVS_SWITCH} protocols=OpenFlow10,OpenFlow11,OpenFlow12,OpenFlow13
+  echo "Reset bridge version"
 }
