@@ -151,6 +151,7 @@ EOF
 if ! which salt-minion >/dev/null 2>&1; then
   # Install Salt
   curl -sS -L --connect-timeout 20 --retry 6 --retry-delay 10 https://bootstrap.saltstack.com | sh -s
+  ip route add $SERVICE_CLUSTER_IP_RANGE dev tun0
 else
   # Sometimes the minion gets wedged when it comes up along with the master.
   # Restarting it here un-wedges it.

@@ -228,8 +228,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         minion.vm.provision "shell", run: "always", path: script
       end
       minion.vm.network "private_network", ip: "#{minion_ip}"
-      config.vm.synced_folder "/data/doppler-dev", "/data/doppler-dev"
-      config.vm.synced_folder "/data/var", "/data/var"
+      config.vm.synced_folder "#{ENV['LOCAL_REPOS_DIR']}/doppler-dev", "/data/doppler-dev"
+      config.vm.synced_folder "#{ENV['LOCAL_REPOS_DIR']}/var", "/data/var"
     end
   end
 end
