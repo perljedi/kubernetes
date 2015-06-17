@@ -282,7 +282,6 @@ if ! which salt-minion >/dev/null 2>&1; then
 
   # Install Salt minion
   curl -sS -L --connect-timeout 20 --retry 6 --retry-delay 10 https://bootstrap.saltstack.com | sh -s
-  ip route add $SERVICE_CLUSTER_IP_RANGE dev tun0
 else
   # Only run highstate when updating the config.  In the first-run case, Salt is
   # set up to run highstate as new minions join for the first time.
